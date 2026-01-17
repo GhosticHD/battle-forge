@@ -1,0 +1,162 @@
+.battle-edit-container {
+  padding: 20px;
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.edit-header h1 {
+  margin: 0;
+  color: #1e293b;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.save-button {
+  background: #10b981;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.save-button:hover {
+  background: #059669;
+}
+
+.cancel-button {
+  background: #64748b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background: #475569;
+}
+
+.pages-navigation {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.page-tab {
+  position: relative;
+  padding: 8px 16px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-tab.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.delete-page {
+  color: #ef4444;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.delete-page:hover {
+  color: #dc2626;
+}
+
+.add-page-button {
+  padding: 8px 16px;
+  border: 2px dashed #cbd5e1;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.add-page-button:hover {
+  border-color: #94a3b8;
+  color: #475569;
+}
+
+.edit-main-content {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  position: relative;
+  min-height: 0;
+}
+
+.page-editor-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.page-info-editor {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.page-title-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.page-description-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 18px;
+  color: #64748b;
+}

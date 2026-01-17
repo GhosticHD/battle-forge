@@ -1,0 +1,176 @@
+.battle-view-container {
+  padding: 20px;
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+}
+
+.battle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.battle-title-section {
+  flex: 1;
+}
+
+.battle-title-section h1 {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+}
+
+.battle-description {
+  color: #64748b;
+  margin-bottom: 15px;
+  font-size: 16px;
+  max-width: 600px;
+}
+
+.battle-meta {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.meta-item {
+  color: #64748b;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.edit-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #3b82f6;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.edit-button:hover {
+  background: #2563eb;
+}
+
+.share-section {
+  background: #f1f5f9;
+  padding: 15px;
+  border-radius: 8px;
+  min-width: 300px;
+}
+
+.share-section h4 {
+  margin: 0 0 10px 0;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.share-link {
+  display: flex;
+  gap: 10px;
+}
+
+.share-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+}
+
+.copy-button {
+  background: #64748b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.copy-button:hover {
+  background: #475569;
+}
+
+.battle-main-content {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  position: relative;
+  min-height: 0;
+}
+
+.battle-content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.pages-tabs {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.view-page-tab {
+  padding: 8px 16px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.view-page-tab.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.current-page-view {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.current-page-view h2 {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+}
+
+.page-description {
+  color: #64748b;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.map-container {
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 18px;
+  color: #64748b;
+}

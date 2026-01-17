@@ -1,0 +1,317 @@
+/* Добавьте эти стили в конец файла */
+
+.header {
+  background: #1e293b;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #334155;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.nav a:hover {
+  background: #334155;
+  color: white;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-email {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.logout-button {
+  background: #dc2626;
+}
+
+.logout-button:hover {
+  background: #b91c1c;
+}
+
+.login-button {
+  background: #3b82f6;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.login-button:hover {
+  background: #2563eb;
+}
+
+.home {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.home h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.home p {
+  font-size: 18px;
+  color: #64748b;
+  margin-bottom: 40px;
+}
+
+.home-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.2s;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.btn-secondary:hover {
+  background: #cbd5e1;
+  transform: translateY(-2px);
+}
+
+.battle-view {
+  padding: 20px;
+}
+
+.battle-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.battle-header h1 {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+}
+
+.battle-description {
+  color: #64748b;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.battle-meta {
+  display: flex;
+  gap: 20px;
+  color: #94a3b8;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.edit-button {
+  display: inline-block;
+  background: #10b981;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.edit-button:hover {
+  background: #059669;
+}
+
+.pages-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.pages-tabs button {
+  padding: 8px 16px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pages-tabs button.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.current-page {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.current-page h3 {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+}
+
+.current-page p {
+  color: #64748b;
+  margin-bottom: 20px;
+}
+
+.map-container {
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.share-section {
+  background: #f1f5f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.share-section h4 {
+  margin: 0 0 10px 0;
+  color: #475569;
+}
+
+.share-link {
+  display: flex;
+  gap: 10px;
+}
+
+.share-link input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.gallery {
+  padding: 20px;
+}
+
+.gallery h1 {
+  margin-bottom: 30px;
+  color: #1e293b;
+}
+
+.battles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.battle-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.battle-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.battle-card h3 {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+}
+
+.battle-card p {
+  color: #64748b;
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.battle-stats {
+  display: flex;
+  justify-content: space-between;
+  color: #94a3b8;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.view-button {
+  display: inline-block;
+  background: #3b82f6;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.view-button:hover {
+  background: #2563eb;
+}
+
+.empty-gallery {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.empty-gallery p {
+  color: #64748b;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.leaflet-container {
+  height: 600px;
+  width: 100%;
+}
