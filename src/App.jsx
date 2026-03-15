@@ -6,6 +6,7 @@ import BattleEdit from './pages/BattleEdit'
 import Gallery from './pages/Gallery'
 import Login from './pages/Login'
 import Layout from './components/Layout'
+import Profile from './pages/Profile'
 
 // Компонент для защищенных маршрутов
 function PrivateRoute({ children }) {
@@ -20,6 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="gallery" element={<Gallery />} />

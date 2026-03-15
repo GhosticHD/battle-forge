@@ -1,14 +1,16 @@
-import { Link } from 'react-router-dom'
-import { useAuth } from '../services/firebase'
+import { Link } from "react-router-dom";
+import { useAuth } from "../services/firebase";
 
 export default function Home() {
-  const { user } = useAuth()
+  const { user } = useAuth();
 
   return (
     <div className="home">
       <h1>Battle Forge</h1>
-      <p className="subtitle">Создавайте интерактивные карты исторических битв</p>
-      
+      <p className="subtitle">
+        Создавайте интерактивные карты исторических битв
+      </p>
+
       <div className="home-actions">
         {user ? (
           <>
@@ -17,6 +19,9 @@ export default function Home() {
             </Link>
             <Link to="/gallery" className="btn-secondary">
               👀 Посмотреть галерею
+            </Link>
+            <Link to="/profile" className="btn-secondary">
+              👤 Мой профиль
             </Link>
           </>
         ) : (
@@ -46,5 +51,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }

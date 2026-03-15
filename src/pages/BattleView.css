@@ -174,3 +174,19 @@
   font-size: 18px;
   color: #64748b;
 }
+
+
+.like-button {
+  margin-top: 10px;
+  padding: 8px 14px;
+  border: none;
+  background: #ff4757;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.like-button:hover {
+  opacity: 0.9;
+}
