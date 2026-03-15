@@ -1,76 +1,103 @@
-import { useState, useRef, useEffect } from 'react'
-import { MapContainer, TileLayer, ImageOverlay, Marker, Popup, useMapEvents } from 'react-leaflet'
-import { Icon, LatLngBounds } from 'leaflet'
-import 'leaflet/dist/leaflet.css'
+import { useState, useRef, useEffect } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  ImageOverlay,
+  Marker,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
+import { Icon, LatLngBounds } from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 const customIcons = {
   infantry: new Icon({
-    iconUrl: '/icons/infantry.svg',
-    iconSize: [32, 32]
+    iconUrl: "/icons/infantry.svg",
+    iconSize: [32, 32],
   }),
   cavalry: new Icon({
-    iconUrl: '/icons/cavalry.svg',
-    iconSize: [32, 32]
+    iconUrl: "/icons/cavalry.svg",
+    iconSize: [32, 32],
   }),
   artillery: new Icon({
-    iconUrl: '/icons/artillery.svg',
-    iconSize: [32, 32]
+    iconUrl: "/icons/artillery.svg",
+    iconSize: [32, 32],
   }),
   info: new Icon({
-    iconUrl: '/icons/info.svg',
-    iconSize: [32, 32]
-  })
-}
+    iconUrl: "/icons/info.svg",
+    iconSize: [32, 32],
+  }),
+};
 
-function AddMarker({ onAddMarker, selectedIcon }) {
+function AddMarker({ onAddMarker, selectedIcon, spawnMode, onSetSpawn }) {
   useMapEvents({
     click(e) {
+      if (spawnMode) {
+        onSetSpawn([e.latlng.lat, e.latlng.lng]);
+        return;
+      }
+
       onAddMarker({
         position: [e.latlng.lat, e.latlng.lng],
         type: selectedIcon,
-        title: 'Новая отметка',
-        description: 'Описание отметки',
-        id: Date.now()
-      })
-    }
-  })
-  return null
+        title: "Новая отметка",
+        description: "Описание отметки",
+        id: Date.now(),
+      });
+    },
+  });
+
+  return null;
 }
 
 export default function MapEditor({ mapData, onMapChange, isEditing }) {
-  const [selectedIcon, setSelectedIcon] = useState('infantry')
-  const [uploadedMap, setUploadedMap] = useState(null)
-  const [mapBounds, setMapBounds] = useState(new LatLngBounds([0, 0], [100, 100]))
-  const [editingMarker, setEditingMarker] = useState(null)
-  const fileInputRef = useRef()
+  const [selectedIcon, setSelectedIcon] = useState("infantry");
+  const [uploadedMap, setUploadedMap] = useState(null);
+  const [mapBounds, setMapBounds] = useState(
+    new LatLngBounds([0, 0], [100, 100]),
+  );
+  const [editingMarker, setEditingMarker] = useState(null);
+  const fileInputRef = useRef();
+  const [spawnMode, setSpawnMode] = useState(false);
 
   // Загружаем сохраненную карту при монтировании
   useEffect(() => {
     if (mapData?.customMap) {
-      setUploadedMap(mapData.customMap.image)
-      setMapBounds(new LatLngBounds(
-        mapData.customMap.bounds.southWest,
-        mapData.customMap.bounds.northEast
-      ))
+      setUploadedMap(mapData.customMap.image);
+      setMapBounds(
+        new LatLngBounds(
+          mapData.customMap.bounds.southWest,
+          mapData.customMap.bounds.northEast,
+        ),
+      );
     }
-  }, [mapData])
+  }, [mapData]);
+
+  const handleSetSpawn = (position) => {
+    onMapChange({
+      ...mapData,
+      spawnPoint: position,
+    });
+
+    setSpawnMode(false);
+  };
 
   const handleFileUpload = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onload = (event) => {
-        const img = new Image()
+        const img = new Image();
         img.onload = () => {
-          const imageUrl = event.target.result
-          setUploadedMap(imageUrl)
-          
+          const imageUrl = event.target.result;
+          setUploadedMap(imageUrl);
+
           const bounds = new LatLngBounds(
             [0, 0],
-            [img.naturalHeight / 100, img.naturalWidth / 100] // Масштабируем для отображения
-          )
-          setMapBounds(bounds)
-          
+            [img.naturalHeight / 100, img.naturalWidth / 100], // Масштабируем для отображения
+          );
+          setMapBounds(bounds);
+
           // Сохраняем кастомную карту в данные
           onMapChange({
             ...mapData,
@@ -78,38 +105,38 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
               image: imageUrl,
               bounds: {
                 southWest: [0, 0],
-                northEast: [img.naturalHeight / 100, img.naturalWidth / 100]
-              }
-            }
-          })
-        }
-        img.src = event.target.result
-      }
-      reader.readAsDataURL(file)
+                northEast: [img.naturalHeight / 100, img.naturalWidth / 100],
+              },
+            },
+          });
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   const handleAddMarker = (marker) => {
-    if (!isEditing) return
-    const newMarkers = [...(mapData?.markers || []), marker]
-    onMapChange({ ...mapData, markers: newMarkers })
-  }
+    if (!isEditing) return;
+    const newMarkers = [...(mapData?.markers || []), marker];
+    onMapChange({ ...mapData, markers: newMarkers });
+  };
 
   const handleUpdateMarker = (index, updatedMarker) => {
-    if (!isEditing) return
-    const newMarkers = [...(mapData?.markers || [])]
-    newMarkers[index] = updatedMarker
-    onMapChange({ ...mapData, markers: newMarkers })
-    setEditingMarker(null)
-  }
+    if (!isEditing) return;
+    const newMarkers = [...(mapData?.markers || [])];
+    newMarkers[index] = updatedMarker;
+    onMapChange({ ...mapData, markers: newMarkers });
+    setEditingMarker(null);
+  };
 
   const handleDeleteMarker = (index) => {
-    if (!isEditing) return
-    const newMarkers = [...(mapData?.markers || [])]
-    newMarkers.splice(index, 1)
-    onMapChange({ ...mapData, markers: newMarkers })
-    setEditingMarker(null)
-  }
+    if (!isEditing) return;
+    const newMarkers = [...(mapData?.markers || [])];
+    newMarkers.splice(index, 1);
+    onMapChange({ ...mapData, markers: newMarkers });
+    setEditingMarker(null);
+  };
 
   return (
     <div className="map-editor">
@@ -117,7 +144,7 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
         <div className="editor-toolbar">
           <div className="toolbar-section">
             <h4>Карта</h4>
-            <button 
+            <button
               onClick={() => fileInputRef.current.click()}
               className="toolbar-btn"
             >
@@ -128,46 +155,46 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
               ref={fileInputRef}
               onChange={handleFileUpload}
               accept="image/*"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
             />
           </div>
-          
+
           <div className="toolbar-section">
             <h4>Иконки</h4>
             <div className="icon-selector">
-              {Object.keys(customIcons).map(icon => (
+              {Object.keys(customIcons).map((icon) => (
                 <button
                   key={icon}
-                  className={`icon-btn ${selectedIcon === icon ? 'active' : ''}`}
+                  className={`icon-btn ${selectedIcon === icon ? "active" : ""}`}
                   onClick={() => setSelectedIcon(icon)}
                   title={icon}
                 >
-                  <img src={`/icons/${icon}.png`} alt={icon} width={24} />
+                  <img src={`/icons/${icon}.svg`} width={24} />
                 </button>
               ))}
             </div>
           </div>
+          <button className="toolbar-btn" onClick={() => setSpawnMode(true)}>
+            📍 Установить точку появления
+          </button>
         </div>
       )}
-      
+
       <MapContainer
-        center={mapBounds.getCenter()}
+        center={mapData?.spawnPoint || mapBounds.getCenter()}
         zoom={5}
-        style={{ height: '600px', width: '100%' }}
+        style={{ height: "600px", width: "100%" }}
         bounds={uploadedMap ? mapBounds : null}
       >
         {uploadedMap ? (
-          <ImageOverlay 
-            url={uploadedMap} 
-            bounds={mapBounds}
-          />
+          <ImageOverlay url={uploadedMap} bounds={mapBounds} />
         ) : (
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
         )}
-        
+
         {mapData?.markers?.map((marker, index) => (
           <Marker
             key={marker.id || index}
@@ -177,18 +204,21 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
             eventHandlers={{
               click: () => {
                 if (isEditing) {
-                  setEditingMarker({ ...marker, index })
+                  setEditingMarker({ ...marker, index });
                 }
               },
               dragend: (e) => {
                 if (isEditing) {
                   const newMarker = {
                     ...marker,
-                    position: [e.target.getLatLng().lat, e.target.getLatLng().lng]
-                  }
-                  handleUpdateMarker(index, newMarker)
+                    position: [
+                      e.target.getLatLng().lat,
+                      e.target.getLatLng().lng,
+                    ],
+                  };
+                  handleUpdateMarker(index, newMarker);
                 }
-              }
+              },
             }}
           >
             <Popup>
@@ -196,7 +226,7 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
                 <h3>{marker.title}</h3>
                 <p>{marker.description}</p>
                 {isEditing && (
-                  <button 
+                  <button
                     onClick={() => setEditingMarker({ ...marker, index })}
                     className="edit-marker-btn"
                   >
@@ -207,11 +237,31 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
             </Popup>
           </Marker>
         ))}
-        
+
+        {mapData?.spawnPoint && isEditing && (
+          <Marker
+            position={mapData.spawnPoint}
+            draggable={true}
+            eventHandlers={{
+              dragend: (e) => {
+                const pos = e.target.getLatLng();
+                onMapChange({
+                  ...mapData,
+                  spawnPoint: [pos.lat, pos.lng],
+                });
+              },
+            }}
+          >
+            <Popup>Точка появления</Popup>
+          </Marker>
+        )}
+
         {isEditing && (
           <AddMarker
             onAddMarker={handleAddMarker}
             selectedIcon={selectedIcon}
+            spawnMode={spawnMode}
+            onSetSpawn={handleSetSpawn}
           />
         )}
       </MapContainer>
@@ -225,10 +275,14 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
               <label>Тип:</label>
               <select
                 value={editingMarker.type}
-                onChange={(e) => setEditingMarker({...editingMarker, type: e.target.value})}
+                onChange={(e) =>
+                  setEditingMarker({ ...editingMarker, type: e.target.value })
+                }
               >
-                {Object.keys(customIcons).map(type => (
-                  <option key={type} value={type}>{type}</option>
+                {Object.keys(customIcons).map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
                 ))}
               </select>
             </div>
@@ -237,31 +291,40 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
               <input
                 type="text"
                 value={editingMarker.title}
-                onChange={(e) => setEditingMarker({...editingMarker, title: e.target.value})}
+                onChange={(e) =>
+                  setEditingMarker({ ...editingMarker, title: e.target.value })
+                }
               />
             </div>
             <div className="form-group">
               <label>Описание:</label>
               <textarea
                 value={editingMarker.description}
-                onChange={(e) => setEditingMarker({...editingMarker, description: e.target.value})}
+                onChange={(e) =>
+                  setEditingMarker({
+                    ...editingMarker,
+                    description: e.target.value,
+                  })
+                }
                 rows={3}
               />
             </div>
             <div className="modal-actions">
-              <button 
-                onClick={() => handleUpdateMarker(editingMarker.index, editingMarker)}
+              <button
+                onClick={() =>
+                  handleUpdateMarker(editingMarker.index, editingMarker)
+                }
                 className="save-btn"
               >
                 Сохранить
               </button>
-              <button 
+              <button
                 onClick={() => handleDeleteMarker(editingMarker.index)}
                 className="delete-btn"
               >
                 Удалить
               </button>
-              <button 
+              <button
                 onClick={() => setEditingMarker(null)}
                 className="cancel-btn"
               >
@@ -272,5 +335,5 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
         </div>
       )}
     </div>
-  )
+  );
 }
