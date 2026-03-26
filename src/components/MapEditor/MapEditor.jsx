@@ -143,10 +143,10 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
       {isEditing && (
         <div className="editor-toolbar">
           <div className="toolbar-section">
-            <h4>Карта</h4>
+            <div className="map-edit-title">Карта</div>
             <button
               onClick={() => fileInputRef.current.click()}
-              className="toolbar-btn"
+              className="toolbar-btn view-button"
             >
               📁 Загрузить карту
             </button>
@@ -160,7 +160,7 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
           </div>
 
           <div className="toolbar-section">
-            <h4>Иконки</h4>
+            <div className="map-edit-title">Иконки</div>
             <div className="icon-selector">
               {Object.keys(customIcons).map((icon) => (
                 <button
@@ -168,13 +168,14 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
                   className={`icon-btn ${selectedIcon === icon ? "active" : ""}`}
                   onClick={() => setSelectedIcon(icon)}
                   title={icon}
+                  id="icon-button"
                 >
                   <img src={`/icons/${icon}.svg`} width={24} />
                 </button>
               ))}
             </div>
           </div>
-          <button className="toolbar-btn" onClick={() => setSpawnMode(true)}>
+          <button className="toolbar-btn view-button" onClick={() => setSpawnMode(true)}>
             📍 Установить точку появления
           </button>
         </div>
@@ -228,7 +229,7 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
                 {isEditing && (
                   <button
                     onClick={() => setEditingMarker({ ...marker, index })}
-                    className="edit-marker-btn"
+                    className="edit-marker-btn profile-input"
                   >
                     ✏️ Редактировать
                   </button>
@@ -270,11 +271,12 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
       {isEditing && editingMarker && (
         <div className="marker-editor-modal">
           <div className="modal-content">
-            <h3>Редактирование маркера</h3>
+            <h3 className="modal-content-title">Редактирование маркера</h3>
             <div className="form-group">
               <label>Тип:</label>
               <select
                 value={editingMarker.type}
+                className="profile-input select-marker-edit"
                 onChange={(e) =>
                   setEditingMarker({ ...editingMarker, type: e.target.value })
                 }
@@ -287,9 +289,10 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
               </select>
             </div>
             <div className="form-group">
-              <label>Заголовок:</label>
+              <div>Заголовок:</div>
               <input
                 type="text"
+                className="profile-input select-marker-edit"
                 value={editingMarker.title}
                 onChange={(e) =>
                   setEditingMarker({ ...editingMarker, title: e.target.value })
@@ -297,8 +300,9 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
               />
             </div>
             <div className="form-group">
-              <label>Описание:</label>
+              <div>Описание:</div>
               <textarea
+                className="profile-input select-marker-edit textarea-marker-edit"
                 value={editingMarker.description}
                 onChange={(e) =>
                   setEditingMarker({
@@ -314,19 +318,19 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
                 onClick={() =>
                   handleUpdateMarker(editingMarker.index, editingMarker)
                 }
-                className="save-btn"
+                className="save-btn toolbar-btn view-button"
               >
                 Сохранить
               </button>
               <button
                 onClick={() => handleDeleteMarker(editingMarker.index)}
-                className="delete-btn"
+                className="delete-btn toolbar-btn view-button"
               >
                 Удалить
               </button>
               <button
                 onClick={() => setEditingMarker(null)}
-                className="cancel-btn"
+                className="cancel-btn toolbar-btn view-button"
               >
                 Отмена
               </button>

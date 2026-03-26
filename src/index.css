@@ -1,13 +1,16 @@
 /* Добавьте эти стили в конец файла */
 
 .header {
-  background: #1e293b;
-  color: white;
+  background: rgba(8, 83, 247, 0.349);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.8px);
+  -webkit-backdrop-filter: blur(5.8px);
+  border-radius: 15px;
+  color: rgb(0, 0, 0);
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #334155;
 }
 
 .header-left {
@@ -19,8 +22,9 @@
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: white;
+  color: rgb(0, 0, 0);
   text-decoration: none;
+  font-family: "Sen", sans-serif;
 }
 
 .nav {
@@ -29,15 +33,16 @@
 }
 
 .nav a {
-  color: #cbd5e1;
+  color: #000000;
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 4px;
   transition: background 0.2s;
+  font-family: "Rubik", sans-serif;
 }
 
 .nav a:hover {
-  background: #334155;
+  background: #3341555e;
   color: white;
 }
 
@@ -54,6 +59,10 @@
 
 .logout-button {
   background: #dc2626;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
 }
 
 .logout-button:hover {
@@ -245,9 +254,9 @@
 }
 
 .battles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .battle-card {
@@ -257,6 +266,11 @@
   padding: 20px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 250px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  
 }
 
 .battle-card:hover {
@@ -267,6 +281,11 @@
 .battle-card h3 {
   margin: 0 0 10px 0;
   color: #1e293b;
+  max-width: 100%;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .battle-card p {
@@ -274,6 +293,11 @@
   margin-bottom: 15px;
   font-size: 14px;
   line-height: 1.5;
+  max-width: 100%;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .battle-stats {
@@ -282,20 +306,6 @@
   color: #94a3b8;
   font-size: 12px;
   margin-bottom: 15px;
-}
-
-.view-button {
-  display: inline-block;
-  background: #3b82f6;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.view-button:hover {
-  background: #2563eb;
 }
 
 .empty-gallery {
@@ -315,3 +325,512 @@
   height: 600px;
   width: 100%;
 }
+
+.user-profile {
+  background: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+}
+
+.user-profile-btn {
+  color: #000000;
+  text-decoration: none;
+  font-family: 'Sen', sans-serif;
+  transition: .3s;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.user-profile-btn:hover {
+  opacity: 0.5;
+  background-color: #cccccc4f;
+}
+
+.gallery-title {
+  font-family: 'Sen', sans-serif;
+}
+
+.battle-card {
+  position: relative;
+}
+
+.gallery-battle-card-title {
+  font-family: 'Sen', sans-serif;
+}
+
+.gallery-battle-card-desc {
+  font-family: "Rubik", sans-serif;
+}
+
+.battle-stats {
+  font-family: "Rubik", sans-serif;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.gallery-stats-countly {
+  display: flex;
+  gap: 10px;
+}
+
+.battle-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.author-avatar {
+  width: 30;
+  height: 30px;
+  border-radius: 25px;
+}
+
+.author-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.view-button {
+  background: #3b82f6;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.view-button:hover {
+  background: #2563eb;
+}
+
+.gallery-battle-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 25px;
+
+  font-family: "Rubik", sans-serif;
+}
+
+/* Профиль
+
+*/
+
+.profile-page {
+  box-sizing: border-box;
+
+  max-width: 1142px;
+  margin: 0 auto;
+
+  margin-top: 25px;
+  border-radius: 25px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+
+  background: rgba(8, 84, 247, 0.034);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.profile-title {
+  text-align: center;
+  font-family: "Sen", sans-serif;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  font-family: "Rubik", sans-serif;
+}
+
+.profile-input {
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.349);
+  padding: 8px;
+}
+
+.profile-input:focus {
+  outline: none;
+}
+
+
+.profile-button {
+  border: none
+}
+
+.profile-textarea {
+  width: 300px;
+  height: 150px;
+  resize: none;
+}
+
+/*
+ РЕДАКТИРОВАНИЕ  /  ПРОСМОТР КАРТЫ
+*/
+
+.leaflet-attribution-flag {
+    display: none !important;
+}
+
+.edit-header {
+  font-family: "Rubik", sans-serif;
+}
+
+.save-button {
+  font-family: "Rubik", sans-serif;
+}
+
+.cancel-button {
+  font-family: "Rubik", sans-serif;
+}
+
+.page-title-input {
+  border-radius: 12px;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+}
+
+.page-description-input {
+  resize: none;
+  font-family: "Rubik", sans-serif;
+  font-size: 15px;
+}
+
+.map-edit-title {
+  font-family: "Rubik", sans-serif;
+  font-size: 20px;
+}
+
+.toolbar-btn {
+  border: none;
+  background-color: #e2e6e9;
+  color: #000000;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: .3s;
+}
+
+.toolbar-btn:hover {
+  border: none;
+  background-color: #ccd0d3;
+  color: #000000;
+}
+
+.toolbar-section {
+  margin-top: 15px;
+}
+
+.icon-selector {
+  display: flex;
+  gap: 5px;
+}
+
+#icon-button {
+  border: 1px solid #c3c7ca;
+  background-color: #dbdbdb42;
+  transition: .3s;
+}
+
+#icon-button:hover {
+  opacity: 0.7;
+}
+
+.map-edit-title {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.marker-editor-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.452); /* Полупрозрачный фон */
+  z-index: 10000; /* Высокий z-index для отображения над другими элементами */
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+
+  margin: 500px auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  padding: 10px;
+}
+
+.modal-content-title {
+  font-family: "Rubik", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.form-group {
+  font-family: "Rubik", sans-serif;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.select-marker-edit {
+  padding: 5px;
+  font-family: "Rubik", sans-serif;
+}
+
+.textarea-marker-edit {
+  resize: none;
+}
+
+.save-btn {
+  background-color: #30dfa7;
+  transition: .3s;
+}
+
+.save-btn:hover {
+  background-color: #26bb8c;
+}
+
+.delete-btn {
+  background-color: #d85151;
+  transition: .3s;
+}
+
+.delete-btn:hover {
+  background-color: #c44848;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container {
+  box-sizing: border-box;
+
+  max-width: 550px;
+  margin: 0 auto;
+
+  margin-top: 25px;
+  border-radius: 25px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+
+  background: rgba(8, 84, 247, 0.034);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.auth-title {
+  font-family: "Rubik", sans-serif;
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.auth-btn-google {
+  margin-top: 15px;
+}
+
+.register-btn {
+  cursor: pointer;
+}
+
+.auth-btn {
+  border: none;
+}
+
+/* =========================
+   📱 MOBILE (до 768px)
+========================= */
+@media (max-width: 768px) {
+
+  /* HEADER */
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .header-left {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* HOME */
+  .features {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .feature {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  /* BATTLE VIEW / EDIT */
+  .battle-main-content,
+  .edit-main-content {
+    flex-direction: column;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-top: 2px solid #334155;
+  }
+
+  /* SHARE */
+  .share-section {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .share-link {
+    flex-direction: column;
+  }
+
+  /* GRID / CARDS */
+  .battles-grid {
+    justify-content: center;
+  }
+
+  .battle-card {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* PROFILE */
+  .profile-textarea {
+    width: 100%;
+  }
+
+  /* MAP */
+  .leaflet-container {
+    height: 400px;
+  }
+
+  /* MODAL */
+  .modal-content {
+    margin: 0;
+    width: 90%;
+  }
+}
+
+/* =========================
+   📱 TABLET (768–1024px)
+========================= */
+@media (max-width: 1024px) {
+
+  .features {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .battle-main-content,
+  .edit-main-content {
+    gap: 10px;
+  }
+
+  .sidebar {
+    width: 250px;
+  }
+}
+
+/* =========================
+   📱 MOBILE SIDEBAR
+========================= */
+
+.mobile-sidebar-toggle {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* контейнер сайдбара */
+.sidebar-wrapper {
+  transition: all 0.3s ease;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .mobile-sidebar-toggle {
+    display: block;
+  }
+
+  .sidebar-wrapper {
+    display: none;
+  }
+
+  .sidebar-wrapper.open {
+    display: block;
+  }
+
+  .stat-edit-row input {
+  width: 100%;
+  }
+
+  .share-section {
+    display: none;
+  }
+
+  .header-nav-create-btn {
+    display: none;
+  }
+
+  .home-create-btn {
+    display: none;
+  }
+
+  .edit-button {
+    display: none;
+  }
+}
+
+.map-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+

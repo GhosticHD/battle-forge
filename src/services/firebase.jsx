@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { query, where, getDocs, collection } from "firebase/firestore";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -11,7 +12,6 @@ import {
 } from "firebase/auth";
 import {
   getFirestore,
-  collection,
   doc,
   setDoc,
   getDoc,
@@ -175,24 +175,17 @@ export const battleService = {
 export const userService = {
   async getUser(uid) {
     if (!uid) return null;
-
     const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      return docSnap.data();
-    }
-
-    return null;
+    return docSnap.exists() ? docSnap.data() : null;
   },
 
   async createUser(user) {
     const userRef = doc(db, "users", user.uid);
-
     await setDoc(userRef, {
       uid: user.uid,
       nickname: user.email?.split("@")[0] || "User",
-      avatar: "",
+      avatar: "", // теперь это просто URL/base64
       bio: "",
       createdAt: new Date().toISOString(),
     });
@@ -200,8 +193,13 @@ export const userService = {
 
   async updateProfile(uid, data) {
     const userRef = doc(db, "users", uid);
-
     await updateDoc(userRef, data);
+  },
+
+  // Новый метод: установить аватарку через URL/base64
+  async setAvatar(uid, avatarUrlOrBase64) {
+    await this.updateProfile(uid, { avatar: avatarUrlOrBase64 });
+    return avatarUrlOrBase64;
   },
 };
 
@@ -248,33 +246,34 @@ export const likeService = {
 };
 
 
+
 export const viewService = {
-
   async registerView(battleId, userId) {
+    if (!userId) return;
 
-    if (!userId) return
+    const viewId = `${battleId}_${userId}`;
+    const viewRef = doc(db, "views", viewId);
+    const battleRef = doc(db, "battles", battleId);
 
-    const viewId = `${battleId}_${userId}`
+    const viewSnap = await getDoc(viewRef);
 
-    const viewRef = doc(db, "views", viewId)
-    const battleRef = doc(db, "battles", battleId)
-
-    const viewSnap = await getDoc(viewRef)
-
+    // если уже смотрел — ничего не делаем
     if (viewSnap.exists()) {
-      return false
+      return false;
     }
 
+    // создаём просмотр
     await setDoc(viewRef, {
       battleId,
-      userId
-    })
+      userId,
+      createdAt: new Date().toISOString(),
+    });
 
+    // 👇 увеличиваем views
     await updateDoc(battleRef, {
-      views: increment(1)
-    })
+      views: increment(1),
+    });
 
-    return true
+    return true;
   }
-
-}
+};

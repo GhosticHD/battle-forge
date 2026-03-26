@@ -16,6 +16,7 @@ export default function BattleView() {
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
     loadBattle();
@@ -29,7 +30,15 @@ export default function BattleView() {
       setLikes(data.likes || 0);
 
       if (user) {
-        await viewService.registerView(id, user.uid);
+        const isNewView = await viewService.registerView(id, user.uid);
+
+        // 👇 если добавился новый просмотр — обновляем локально
+        if (isNewView) {
+          setBattle((prev) => ({
+            ...prev,
+            views: (prev.views || 0) + 1,
+          }));
+        }
       }
 
       if (user) {
@@ -151,7 +160,16 @@ export default function BattleView() {
           )}
         </div>
 
-        <Sidebar battleData={battle} isEditing={false} />
+        <button
+          className="mobile-sidebar-toggle"
+          onClick={() => setShowSidebar(!showSidebar)}
+        >
+          {showSidebar ? "Закрыть инфо" : "Открыть инфо"}
+        </button>
+
+        <div className={`sidebar-wrapper ${showSidebar ? "open" : ""}`}>
+          <Sidebar battleData={battle} isEditing={false} />
+        </div>
       </div>
     </div>
   );

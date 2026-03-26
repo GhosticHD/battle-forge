@@ -5,6 +5,7 @@
   padding: 20px;
   overflow-y: auto;
   border-right: 2px solid #334155;
+  font-family: "Rubik", sans-serif;
 }
 
 .battle-title h2 {

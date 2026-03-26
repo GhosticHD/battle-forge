@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sen:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.home {
+    box-sizing: border-box;
+
+    max-width: 1142px;
+    margin: 0 auto;
+}
+
+.home-title {
+    font-family: "Sen", sans-serif;
+}
+
+.home-subtitle {
+    font-family: "Rubik", sans-serif;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    width: 850px;
+    margin: 0 auto;
+
+    margin-top: 55px;
+}
+
+.feature {
+    background: rgba(37, 99, 235, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+    border: 1px solid rgba(37, 100, 235, 0.055);
+    border-radius: 15px;
+    width: 250px;
+    height: 250px;
+
+    color: #000000;
+    font-family: "Sen", sans-serif;
+}
+
+.feature-ico { 
+    font-size: 32px;
+}
+
+.btn {
+    font-family: "Sen", sans-serif;
+}

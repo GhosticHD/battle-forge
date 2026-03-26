@@ -190,3 +190,11 @@
 .like-button:hover {
   opacity: 0.9;
 }
+
+.battle-header {
+  font-family: "Rubik", sans-serif;
+}
+
+.current-page-view {
+  font-family: 'Rubik', sans-serif;
+}
