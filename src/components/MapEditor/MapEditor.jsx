@@ -11,6 +11,10 @@ import { Icon, LatLngBounds } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const customIcons = {
+  info: new Icon({
+    iconUrl: "/icons/info.svg",
+    iconSize: [32, 32],
+  }),
   infantry: new Icon({
     iconUrl: "/icons/infantry.svg",
     iconSize: [32, 32],
@@ -23,10 +27,49 @@ const customIcons = {
     iconUrl: "/icons/artillery.svg",
     iconSize: [32, 32],
   }),
-  info: new Icon({
-    iconUrl: "/icons/info.svg",
+  tank: new Icon({
+    iconUrl: "/icons/tank.svg",
     iconSize: [32, 32],
   }),
+  aircraft: new Icon({
+    iconUrl: "/icons/aircraft.svg",
+    iconSize: [32, 32],
+  }),
+  navy: new Icon({
+    iconUrl: "/icons/navy.svg",
+    iconSize: [32, 32],
+  }),
+  person: new Icon({
+    iconUrl: "/icons/person.svg",
+    iconSize: [32, 32],
+  }),
+  battle: new Icon({
+    iconUrl: "/icons/battle.svg",
+    iconSize: [32, 32],
+  }),
+  defense: new Icon({
+    iconUrl: "/icons/defense.svg",
+    iconSize: [32, 32],
+  }),
+  explosion: new Icon({
+    iconUrl: "/icons/explosion.svg",
+    iconSize: [32, 32],
+  }),
+
+};
+
+const iconLabels = {
+  info: "Информация",
+  infantry: "Пехота",
+  cavalry: "Кавалерия",
+  artillery: "Артиллерия",
+  tank: "Танк",
+  aircraft: "Авиация",
+  navy: "Корабль",
+  person: "Персоналий",
+  battle: "Атака",
+  defense: "Защита",
+  explosion: "Взрыв"
 };
 
 function AddMarker({ onAddMarker, selectedIcon, spawnMode, onSetSpawn }) {
@@ -175,7 +218,10 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
               ))}
             </div>
           </div>
-          <button className="toolbar-btn view-button" onClick={() => setSpawnMode(true)}>
+          <button
+            className="toolbar-btn view-button"
+            onClick={() => setSpawnMode(true)}
+          >
             📍 Установить точку появления
           </button>
         </div>
@@ -276,14 +322,13 @@ export default function MapEditor({ mapData, onMapChange, isEditing }) {
               <label>Тип:</label>
               <select
                 value={editingMarker.type}
-                className="profile-input select-marker-edit"
                 onChange={(e) =>
                   setEditingMarker({ ...editingMarker, type: e.target.value })
                 }
               >
                 {Object.keys(customIcons).map((type) => (
                   <option key={type} value={type}>
-                    {type}
+                    {iconLabels[type] || type}
                   </option>
                 ))}
               </select>

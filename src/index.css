@@ -1,12 +1,12 @@
 /* Добавьте эти стили в конец файла */
 
 .header {
-  background: rgba(8, 83, 247, 0.349);
+  background: #3b82f6;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5.8px);
   -webkit-backdrop-filter: blur(5.8px);
   border-radius: 15px;
-  color: rgb(0, 0, 0);
+  color: #FFF;
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -22,7 +22,7 @@
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: rgb(0, 0, 0);
+  color: #FFF;
   text-decoration: none;
   font-family: "Sen", sans-serif;
 }
@@ -33,7 +33,7 @@
 }
 
 .nav a {
-  color: #000000;
+  color: #FFF;
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 4px;
@@ -102,6 +102,7 @@
   display: flex;
   gap: 20px;
   justify-content: center;
+  align-items: center;
 }
 
 .btn-primary, .btn-secondary {
@@ -110,6 +111,9 @@
   text-decoration: none;
   font-weight: 500;
   transition: transform 0.2s;
+  width: 200px;
+  font-family: 'Sen', sans-serif;
+  font-weight: 700;
 }
 
 .btn-primary {
@@ -693,12 +697,12 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+
   }
 
-  .feature {
-    width: 90%;
-    height: auto;
-    padding: 20px;
+  .feature-img img {
+    width: 100px;
+    height: 300px;
   }
 
   /* BATTLE VIEW / EDIT */

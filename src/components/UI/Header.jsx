@@ -9,8 +9,8 @@ export default function Header({ user, onLogout }) {
           Battle Forge
         </Link>
         <nav className="nav">
-          <Link to="/gallery">Галерея</Link>
-          <Link className="header-nav-create-btn" to="/create">Создать</Link>
+          <Link to="/gallery">галерея</Link>
+          <Link className="header-nav-create-btn" to="/create">создать</Link>
         </nav>
       </div>
 

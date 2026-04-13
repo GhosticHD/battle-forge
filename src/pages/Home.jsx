@@ -16,13 +16,10 @@ export default function Home() {
         {user ? (
           <>
             <Link to="/create" className="btn btn-primary home-create-btn">
-              🗺️ Создать новую битву
+              СОЗДАТЬ КАРТУ <span><img className="circlus-ico" src="./icons/circulus.svg"/></span>
             </Link>
             <Link to="/gallery" className="btn btn-secondary">
-              👀 Посмотреть галерею
-            </Link>
-            <Link to="/profile" className="btn btn-secondary">
-              👤 Мой профиль
+              ПОСМОТРЕТЬ КАРТЫ <span><img className="eye-ico" src="./icons/eye-ico.svg"/></span>
             </Link>
           </>
         ) : (
@@ -35,24 +32,6 @@ export default function Home() {
             </Link>
           </>
         )}
-      </div>
-        
-      <div className="features">
-        <div className="feature">
-          <span className="feature-ico">🗺️</span>
-          <h3> Загружайте свои карты</h3>
-          <p>Используйте любые изображения карт в качестве основы</p>
-        </div>
-        <div className="feature">
-        <span className="feature-ico">📍</span>
-          <h3> Добавляйте маркеры</h3>
-          <p>Размещайте военные и информационные иконки на карте</p>
-        </div>
-        <div className="feature">
-        <span className="feature-ico">📖</span>
-          <h3> Создавайте многостраничные битвы</h3>
-          <p>Показывайте развитие битвы по этапам</p>
-        </div>
       </div>
     </div>
   );
