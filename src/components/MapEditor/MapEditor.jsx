@@ -55,7 +55,6 @@ const customIcons = {
     iconUrl: "/icons/explosion.svg",
     iconSize: [32, 32],
   }),
-
 };
 
 const iconLabels = {
