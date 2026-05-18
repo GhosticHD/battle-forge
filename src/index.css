@@ -838,3 +838,20 @@
   overflow: hidden;
 }
 
+.pages-tabs-outer {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  overflow-x: auto; /* Позволит табам скроллиться горизонтально, если они не влезают */
+  white-space: nowrap;
+  padding-bottom: 5px; /* Чтобы полоса прокрутки не перекрывала текст */
+}
+
+/* Скрываем дефолтный уродливый скроллбар для табов (опционально) */
+.pages-tabs-outer::-webkit-scrollbar {
+  height: 4px;
+}
+.pages-tabs-outer::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
