@@ -8,7 +8,6 @@ import Login from './pages/Login'
 import Layout from './components/Layout'
 import Profile from './pages/Profile'
 
-// Компонент для защищенных маршрутов
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth()
   if (loading) return <div>Loading...</div>

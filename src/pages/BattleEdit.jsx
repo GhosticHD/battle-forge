@@ -30,7 +30,6 @@ export default function BattleEdit() {
     if (id) {
       loadBattle();
     } else {
-      // Создаем новую битву с одной страницей по умолчанию
       setPages([
         {
           id: 1,
@@ -204,7 +203,6 @@ export default function BattleEdit() {
           />
         </div>
 
-        {/* Кнопка для мобилки */}
         <button
           className="mobile-sidebar-toggle"
           onClick={() => setShowSidebar(!showSidebar)}

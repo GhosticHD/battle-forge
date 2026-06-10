@@ -34,10 +34,8 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
-// Создаем контекст и экспортируем его
 export const AuthContext = createContext();
 
-// Создаем хук useAuth и экспортируем его
 export function useAuth() {
   return useContext(AuthContext);
 }
@@ -120,7 +118,6 @@ export function AuthProvider({ children }) {
   );
 }
 
-// Battle data service
 export const battleService = {
   async getBattle(id) {
     const docRef = doc(db, "battles", id);
@@ -129,7 +126,6 @@ export const battleService = {
       return {
         id: docSnap.id,
         ...docSnap.data(),
-        // Убедимся что stats всегда есть
         stats: docSnap.data().stats || {
           forces: "",
           losses: "",
@@ -153,7 +149,6 @@ export const battleService = {
       views: 0,
       updatedAt: new Date().toISOString(),
       createdAt: battleData.createdAt || new Date().toISOString(),
-      // Гарантируем наличие stats
       stats: battleData.stats || {
         forces: "",
         losses: "",
@@ -185,7 +180,7 @@ export const userService = {
     await setDoc(userRef, {
       uid: user.uid,
       nickname: user.email?.split("@")[0] || "User",
-      avatar: "", // теперь это просто URL/base64
+      avatar: "", 
       bio: "",
       createdAt: new Date().toISOString(),
     });
@@ -196,7 +191,6 @@ export const userService = {
     await updateDoc(userRef, data);
   },
 
-  // Новый метод: установить аватарку через URL/base64
   async setAvatar(uid, avatarUrlOrBase64) {
     await this.updateProfile(uid, { avatar: avatarUrlOrBase64 });
     return avatarUrlOrBase64;
@@ -257,19 +251,16 @@ export const viewService = {
 
     const viewSnap = await getDoc(viewRef);
 
-    // если уже смотрел — ничего не делаем
     if (viewSnap.exists()) {
       return false;
     }
 
-    // создаём просмотр
     await setDoc(viewRef, {
       battleId,
       userId,
       createdAt: new Date().toISOString(),
     });
 
-    // 👇 увеличиваем views
     await updateDoc(battleRef, {
       views: increment(1),
     });

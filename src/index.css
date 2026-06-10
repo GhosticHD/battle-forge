@@ -424,10 +424,6 @@
   font-family: "Rubik", sans-serif;
 }
 
-/* Профиль
-
-*/
-
 .profile-page {
   box-sizing: border-box;
 
@@ -477,10 +473,6 @@
   height: 150px;
   resize: none;
 }
-
-/*
- РЕДАКТИРОВАНИЕ  /  ПРОСМОТР КАРТЫ
-*/
 
 .leaflet-attribution-flag {
     display: none !important;
@@ -560,8 +552,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.452); /* Полупрозрачный фон */
-  z-index: 10000; /* Высокий z-index для отображения над другими элементами */
+  background-color: rgba(0, 0, 0, 0.452); 
+  z-index: 10000; 
   justify-content: center;
   align-items: center;
   display: flex;
@@ -669,12 +661,8 @@
   border: none;
 }
 
-/* =========================
-   📱 MOBILE (до 768px)
-========================= */
 @media (max-width: 768px) {
 
-  /* HEADER */
   .header {
     flex-direction: column;
     gap: 10px;
@@ -691,7 +679,6 @@
     justify-content: center;
   }
 
-  /* HOME */
   .features {
     width: 100%;
     flex-direction: column;
@@ -705,20 +692,17 @@
     height: 300px;
   }
 
-  /* BATTLE VIEW / EDIT */
   .battle-main-content,
   .edit-main-content {
     flex-direction: column;
   }
 
-  /* SIDEBAR */
   .sidebar {
     width: 100%;
     border-right: none;
     border-top: 2px solid #334155;
   }
 
-  /* SHARE */
   .share-section {
     min-width: unset;
     width: 100%;
@@ -728,7 +712,6 @@
     flex-direction: column;
   }
 
-  /* GRID / CARDS */
   .battles-grid {
     justify-content: center;
   }
@@ -738,26 +721,20 @@
     width: 100%;
   }
 
-  /* PROFILE */
   .profile-textarea {
     width: 100%;
   }
 
-  /* MAP */
   .leaflet-container {
     height: 400px;
   }
 
-  /* MODAL */
   .modal-content {
     margin: 0;
     width: 90%;
   }
 }
 
-/* =========================
-   📱 TABLET (768–1024px)
-========================= */
 @media (max-width: 1024px) {
 
   .features {
@@ -776,9 +753,6 @@
   }
 }
 
-/* =========================
-   📱 MOBILE SIDEBAR
-========================= */
 
 .mobile-sidebar-toggle {
   display: none;
@@ -791,12 +765,10 @@
   margin-bottom: 10px;
 }
 
-/* контейнер сайдбара */
 .sidebar-wrapper {
   transition: all 0.3s ease;
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
 
   .mobile-sidebar-toggle {
@@ -842,12 +814,11 @@
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
-  overflow-x: auto; /* Позволит табам скроллиться горизонтально, если они не влезают */
+  overflow-x: auto; 
   white-space: nowrap;
-  padding-bottom: 5px; /* Чтобы полоса прокрутки не перекрывала текст */
+  padding-bottom: 5px; 
 }
 
-/* Скрываем дефолтный уродливый скроллбар для табов (опционально) */
 .pages-tabs-outer::-webkit-scrollbar {
   height: 4px;
 }

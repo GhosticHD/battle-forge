@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 export default function Gallery() {
   const [battles, setBattles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState("updatedAt"); // default сортировка
+  const [sortBy, setSortBy] = useState("updatedAt"); 
   const location = useLocation();
 
   useEffect(() => {

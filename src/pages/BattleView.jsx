@@ -65,7 +65,6 @@ export default function BattleView() {
 
   return (
     <div className="battle-view-container">
-      {/* Шапка */}
       <div className="battle-header">
         <div className="battle-title-section">
           <h1>{battle.title}</h1>
@@ -110,7 +109,6 @@ export default function BattleView() {
         </div>
       </div>
 
-      {/* 👇 Вынесли табы ПЕРЕД основным контентом карты, чтобы они не ломали внутренний скролл */}
       {hasPages && (
         <div className="pages-tabs-outer">
           {battle.pages.map((page, index) => (
@@ -125,7 +123,6 @@ export default function BattleView() {
         </div>
       )}
 
-      {/* Основной контент */}
       <div className="battle-main-content">
         <div className="battle-content-area">
           {hasPages && (

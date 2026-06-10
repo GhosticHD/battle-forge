@@ -42,7 +42,6 @@ export default function Profile() {
     let avatar = avatarPreview;
 
     if (avatarFile) {
-      // просто сохраняем base64 в Firestore
       avatar = avatarPreview;
       await userService.setAvatar(user.uid, avatar);
     }
